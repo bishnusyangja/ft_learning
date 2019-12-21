@@ -16,7 +16,7 @@ import React, { Component } from 'react';
 import {Button} from 'react-bootstrap'
 
 
-export class ShowResultsFromAPI extends Component() {
+export class ShowResultsFromAPI extends Component {
   constructor(props) {
     super(props);
     this.state = {error: false, data: []};
@@ -68,10 +68,6 @@ export class ShowResultsFromAPI extends Component() {
     )
   }
 }
-
-ShowResultsFromAPI.displayName = {
-  name: "ShowResultsFromAPI"
-};
 
 ShowResultsFromAPI.defaultProps = {
   apiQueryDelay: 0
