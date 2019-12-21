@@ -57,7 +57,8 @@ class OurClass:
 
 class Quitz:
     '''
-    This 
+    This class holds the all question_list for a subject and a class, questions can be added partially and student can also answer the
+    question of a quitz set partially.
     '''
 
     def __init__(self, subject, class_level, **kwargs):
