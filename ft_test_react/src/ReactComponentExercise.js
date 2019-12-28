@@ -54,7 +54,6 @@ export class ShowResultsFromAPI extends Component {
 
   render() {
     return (
-      // <React.Fragment>
         <div>
         <div className="content-container" ref="container">
           {
@@ -67,7 +66,6 @@ export class ShowResultsFromAPI extends Component {
         </div>
         <Button onClick={this.onDisableDelay.bind(this)}>Disable request delay</Button>
         <Button onClick={this.click.bind(this)}>Request data from endpoint</Button>
-      {/* </React.Fragment> */}
       </div>
 
 
