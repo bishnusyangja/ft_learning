@@ -12,68 +12,80 @@
 */
 
 import React, { Component } from 'react';
-// import queryAPI from 'queryAPI';
-import {Button} from 'react-bootstrap'
+import {queryAPI} from './queryAPI';
+import {Button} from 'antd'
 
 
 export class ShowResultsFromAPI extends Component {
   constructor(props) {
     super(props);
-    this.state = {error: false, data: []};
+    this.state = {error: false, data: ''};
     this.container = null;
+    this.fetchData = this.fetchData.bind(this);
   }
 
   onDisableDelay() {
-    this.props.apiQueryDelay = 0;
+    this.props.apiQueryDelay.delay = 0;
   }
 
   click() {
-    if (this.props.apiQueryDelay) {
+    let that = this;
       setTimeout(function () {
-        this.fetchData();
-      }, this.props.apiQueryDelay);
-    }
+        that.fetchData();
+      }, that.props.apiQueryDelay.delay);
   }
 
   fetchData() {
+    let that = this;
     console.log("fetchData")
-    // queryAPI()
-    //   .then(function (response) {
-    //     if (response.data) {
-    //       this.setState({
-    //         data: response.data,
-    //         error: false
-    //       });
-    //     }
-    //   });
+    queryAPI()
+      .then(function (response) {
+        console.log('data is ', response.data);
+        if (response.data) {
+          that.setState({
+            data: response.data.data,
+            error: false
+          });
+        }
+      }).catch(function(err){
+        console.log("Error", err)
+      });
   }
 
   render() {
     return (
-      <React.Fragment>
-        <div class="content-container" ref="container">
+      // <React.Fragment>
+        <div>
+        <div className="content-container" ref="container">
           {
             this.state.error ? (
               <p>Sorry - there was an error with your request.</p>
             ) : (
-                <p>data</p>
+                <p>{this.state.data}</p>
             )
           }
         </div>
         <Button onClick={this.onDisableDelay.bind(this)}>Disable request delay</Button>
         <Button onClick={this.click.bind(this)}>Request data from endpoint</Button>
-      </React.Fragment>
+      {/* </React.Fragment> */}
+      </div>
 
 
     )
   }
 }
 
-ShowResultsFromAPI.defaultProps = {
-  apiQueryDelay: 0
+
+ShowResultsFromAPI.displayName = {
+  name: "ShowResultsFromAPI"
 };
 
-ShowResultsFromAPI.propTypes = {
-  apiQueryDelay: React.propTypes.number
+
+ShowResultsFromAPI.defaultProps = {
+  apiQueryDelay: {delay: 2000}
 };
+
+// ShowResultsFromAPI.propTypes = {
+//   apiQueryDelay: React.propTypes.number
+// };
 
