@@ -25,6 +25,7 @@ export class ShowResultsFromAPI extends Component {
   }
 
   onDisableDelay() {
+    // we can use apiQueryDelay in state of this class but for the ease of use I used it in an object to get modified
     this.props.apiQueryDelay.delay = 0;
   }
 
@@ -52,6 +53,14 @@ export class ShowResultsFromAPI extends Component {
       });
   }
 
+  clearData() {
+    this.setState({error: false, data: ''})
+  }
+
+  enableDelay(){
+    this.props.apiQueryDelay.delay = 2000;
+  }
+
   render() {
     return (
         <div>
@@ -64,8 +73,10 @@ export class ShowResultsFromAPI extends Component {
             )
           }
         </div>
-        <Button onClick={this.onDisableDelay.bind(this)}>Disable request delay</Button>
-        <Button onClick={this.click.bind(this)}>Request data from endpoint</Button>
+        <Button onClick={this.onDisableDelay.bind(this)}>Disable request delay</Button> <br/><br/>
+        <Button onClick={this.click.bind(this)}>Request data from endpoint</Button> <br/><br/>
+        <Button onClick={this.clearData.bind(this)}>Clear Data</Button> <br/><br/>
+        <Button onClick={this.enableDelay.bind(this)}>Enable 2 sec delay</Button> <br/><br/>
       </div>
 
 
@@ -75,7 +86,7 @@ export class ShowResultsFromAPI extends Component {
 
 
 ShowResultsFromAPI.displayName = {
-  name: "ShowResultsFromAPI"
+  name: "ShowResultsFromAPI_2"
 };
 
 
@@ -83,7 +94,10 @@ ShowResultsFromAPI.defaultProps = {
   apiQueryDelay: {delay: 2000}
 };
 
-// ShowResultsFromAPI.propTypes = {
-//   apiQueryDelay: React.propTypes.number
-// };
 
+
+// Conclusion:
+// If we are concerned with type checking, it is better to use typescript. Newer versions of react support functional component and are easy 
+// and better to use. Functional component avoids the issue of state within class and confusion of this keyword in class (to some extent arrow function also 
+// avoids the issues that caused by this keyword in class component)
+//  So react functional component with typescript is another better way to write code in react.
