@@ -13,7 +13,7 @@ class Person:
         self.gender = kwargs.get('gender', '')
 
 
-class Teachers(Person):
+class Teacher(Person):
     '''
     This class holds the information of a teacher
     all params of Person with subject that he teaches and is_class_teacher
@@ -25,7 +25,7 @@ class Teachers(Person):
         self.is_class_teacher = False
         self.is_principal = False
 
-    def assign_class_teacher(self, class_level)
+    def assign_class_teacher(self, class_level):
         self.is_class_teacher = True
         self.class_level = class_level
 
@@ -33,7 +33,7 @@ class Teachers(Person):
         self.is_principal = True
 
 
-class Students(Person):
+class Student(Person):
     '''
     This class holds the information of a student with base class Person
     It also holds the roll no of a student
@@ -119,7 +119,7 @@ class StudentOverallGrading:
     class_level (8 : OurClass Object, contains 2019 year within this object)
     '''
 
-    def __init__(self, student, class_level, **kwargs)
+    def __init__(self, student, class_level, **kwargs):
         self.student = student
         self.class_level = class_level  # (Object of OurClass)
         self.grading = None
