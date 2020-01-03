@@ -27,9 +27,9 @@ class Teacher(Person):
 
     def assign_class_teacher(self, class_level):
         self.is_class_teacher = True
-        self.class_level = class_level
+        self.class_level = class_level # class_level is object of OurClass
 
-    def set_principal_of_school():
+    def set_principal_of_school(self):
         self.is_principal = True
 
 
@@ -62,7 +62,7 @@ class Quitz:
     '''
 
     def __init__(self, subject, class_level, **kwargs):
-        self.subject = subject,
+        self.subject = subject
         self.class_level = class_level # (here class_level holds the object of OurClass)
         self.question_list = []
 
@@ -72,9 +72,8 @@ class Quitz:
     def set_assigned_to(self, student):
         self.assigned_to = student
 
-    def add_question_list(self, *mcq_list):
-        self.question_list.extends(mcq_list)
-
+    def add_question_list(self, mcq_list):
+        self.question_list.extend(mcq_list)
 
 
 class MultipleChoiceQuestion:
@@ -88,11 +87,10 @@ class MultipleChoiceQuestion:
         self.right_answer = None
 
     def set_right_answer(self, answer_number):
-        self.right_answer = kwargs.get('right_answer', '') # accepts an option_number
+        self.right_answer = answer_number # accepts an option_number
 
     def get_right_answer(self):
         return f'option_{self.right_answer}'
-
 
 
 class QuitzEvaluation:
