@@ -101,17 +101,27 @@ class QuitzTestCase(unittest.TestCase):
 
 class MultipleChoiceQuestionTestCase(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_multiple_choice_question_constructor(self):
-        pass
+        ques = 'What is your name ?'
+        mcq = MultipleChoiceQuestion(ques, option_1='a', option_2='b',
+                                     option_3='c', option_4='d')
+        self.assertEqual(mcq.question, ques)
+
+    def test_set_right_answer(self):
+        ques = 'What is your name ?'
+        mcq = MultipleChoiceQuestion(ques, option_1='a', option_2='b',
+                                     option_3='c', option_4='d')
+        mcq.set_right_answer(1)
+        self.assertEqual(mcq.right_answer, 1)
+
+    def test_get_right_answer(self):
+        ques = 'What is your name ?'
+        mcq = MultipleChoiceQuestion(ques, option_1='a', option_2='b',
+                                     option_3='c', option_4='d')
+        self.assertEqual(mcq.get_right_answer(), 'a')
 
 
 class QuitzEvaluation(unittest.TestCase):
-
-    def setUp(self):
-        pass
 
     def test_quitz_evaluation_constructor(self):
         pass

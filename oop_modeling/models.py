@@ -90,7 +90,7 @@ class MultipleChoiceQuestion:
         self.right_answer = answer_number # accepts an option_number
 
     def get_right_answer(self):
-        return f'option_{self.right_answer}'
+        return self.__getattribute__(f'option_{self.right_answer}')
 
 
 class QuitzEvaluation:
