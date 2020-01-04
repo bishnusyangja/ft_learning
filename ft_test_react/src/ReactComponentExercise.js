@@ -101,3 +101,5 @@ ShowResultsFromAPI.defaultProps = {
 // and better to use. Functional component avoids the issue of state within class and confusion of this keyword in class (to some extent arrow function also 
 // avoids the issues that caused by this keyword in class component)
 //  So react functional component with typescript is another better way to write code in react.
+
+// I have also created a queryAPI.js file to mock the api request.
