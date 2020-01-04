@@ -3,6 +3,8 @@ from models import Person, Student, Teacher, OurClass, Quitz, MultipleChoiceQues
     StudentOverallGrading
 
 
+# I am familiar with unit-test, functional-test and end to end test using selenium in python. Here I am
+# writing just unit test only.
 class PersonTestCase(unittest.TestCase): 
 
     def test_person_first_name_and_last_name(self):
