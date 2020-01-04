@@ -77,6 +77,9 @@ class Quitz:
 
 
 class MultipleChoiceQuestion:
+    '''
+    This class holds a multiple choice question and four options for it and a right answer for the question
+    '''
     
     def __init__(self, ques, **kwargs):
         self.question = ques
@@ -90,10 +93,14 @@ class MultipleChoiceQuestion:
         self.right_answer = answer_number # accepts an option_number
 
     def get_right_answer(self):
-        return self.__getattribute__(f'option_{self.right_answer}')
+        return self.__getattribute__(f'option_{self.right_answer}') if self.right_answer else None
 
 
 class QuitzEvaluation:
+    '''
+    This class holds the information of a student for a quitz. It also contains total_question answered by a student
+    for a quitz and the grade of that quitz
+    '''
     
     def __init__(self, student, quitz):
         self.student = student

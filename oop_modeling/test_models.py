@@ -1,5 +1,6 @@
 import unittest
-from models import Person, Student, Teacher, OurClass, Quitz, MultipleChoiceQuestion
+from models import Person, Student, Teacher, OurClass, Quitz, MultipleChoiceQuestion, QuitzEvaluation, \
+    StudentOverallGrading
 
 
 class PersonTestCase(unittest.TestCase): 
@@ -118,22 +119,41 @@ class MultipleChoiceQuestionTestCase(unittest.TestCase):
         ques = 'What is your name ?'
         mcq = MultipleChoiceQuestion(ques, option_1='a', option_2='b',
                                      option_3='c', option_4='d')
+        mcq.set_right_answer(1)
         self.assertEqual(mcq.get_right_answer(), 'a')
 
 
-class QuitzEvaluation(unittest.TestCase):
+class QuitzEvaluationTestCase(unittest.TestCase):
 
     def test_quitz_evaluation_constructor(self):
-        pass
+        subject, class_level = 'English', OurClass(7, 2015)
+        quitz = Quitz(subject, class_level)
+        first_name, last_name, roll_no = 'Babu', 'Aryal', 567
+        student = Student(first_name, last_name, roll_no=roll_no)
+        evaluation = QuitzEvaluation(student, quitz)
+        self.assertEqual(evaluation.student, student)
+        self.assertEqual(evaluation.quitz, quitz)
+        self.assertIsNone(evaluation.grade)
+        self.assertEqual(evaluation.total_answered, 0)
 
 
 class StudentOverallGradingTestCase(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_overall_grading_constructor(self):
-        pass
+        first_name, last_name, roll_no = 'Babu', 'Aryal', 567
+        student, class_level = Student(first_name, last_name, roll_no=roll_no), OurClass(7, 2015)
+        overall_grading = StudentOverallGrading(student, class_level)
+        self.assertEqual(overall_grading.student, student)
+        self.assertEqual(overall_grading.class_level, class_level)
+        self.assertIsNone(overall_grading.grading)
+
+    def test_set_grading(self):
+        first_name, last_name, roll_no = 'Babu', 'Aryal', 567
+        student, class_level = Student(first_name, last_name, roll_no=roll_no), OurClass(7, 2015)
+        overall_grading = StudentOverallGrading(student, class_level)
+        grading = 'A+'
+        overall_grading.set_grading(grading)
+        self.assertEqual(overall_grading.grading, grading)
 
 
 if __name__ == '__main__': 
